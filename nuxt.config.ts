@@ -2,7 +2,13 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ['pruvious', '@nuxt/ui', '@nuxtjs/google-fonts', '@nuxtjs/color-mode'],
+  modules: [
+    'pruvious',
+    '@nuxt/ui',
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/color-mode',
+    '@nuxt/eslint'
+  ],
   googleFonts: {
     families: {
       Lato: {
