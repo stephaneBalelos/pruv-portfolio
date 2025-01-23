@@ -1,5 +1,5 @@
 <template>
-  <CurriculumSection :title="props.title ?? ''">
+  <CurriculumSection :title="props.title ?? ''" :items="items">
     <template #html>
       <PruviousHTML :html="props.textContent" />
     </template>
@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import CurriculumSection from "~/components/Sections/CurriculumSection.vue";
-import { defineBlock, editorField, textField } from "~/.pruvious";
+import { defineBlock, editorField, repeaterField, textAreaField, textField } from "~/.pruvious";
 
 defineBlock({
     label: "Curriculum Section",
@@ -38,6 +38,13 @@ const props = defineProps({
         ],
         required: true,
     }),
+    items: repeaterField({
+    subfields: {
+      title: textField({ label: "Title", default: "Title", required: true }),
+        description: textAreaField({ label: "Description", default: "Description" }),
+    },
+    addLabel: 'Add a Curriculum Item',
+  })
 });
 </script>
 
