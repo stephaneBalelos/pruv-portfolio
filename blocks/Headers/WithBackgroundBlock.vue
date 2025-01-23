@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineBlock, imageField, linkField, selectField, textAreaField, textField } from "~/.pruvious";
+import { defineBlock, linkField, selectField, textAreaField, textField } from "~/.pruvious";
 
 defineBlock({
   label: "Simple Header With Background",
