@@ -51,9 +51,22 @@ const state = reactive({
   message: "",
 });
 
-async function onSubmit(event: FormSubmitEvent<Schema>) {
-  // Do something with data
-  console.log(event.data);
+async function onSubmit($event: FormSubmitEvent<Schema>) {
+    const response = await $fetch('/api/contact-requests', {
+    method: 'post',
+    body: {
+        name: $event.data.name,
+        email: $event.data.email,
+        message: $event.data.message,
+    }
+  })
+
+  console.log(response)
+  if (response) {
+    alert('Thank you for reaching out. I will get back to you soon.')
+  } else {
+    alert('Something went wrong. Please try again later.')
+  }
 }
 </script>
 
