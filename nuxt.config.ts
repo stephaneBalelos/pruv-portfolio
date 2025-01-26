@@ -11,11 +11,7 @@ export default defineNuxtConfig({
   ],
   googleFonts: {
     families: {
-      Lato: {
-        wght: [400, 700],
-        ital: [400, 700],
-      },
-      Poppins: [500],
+      "Source Code Pro": [400, 700],
     },
   },
   app: {
