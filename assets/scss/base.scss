@@ -1,4 +1,4 @@
-body {
+body .page {
     background-color: rgb(var(--color-gray-100));
     font-family: 'Source Code Pro', monospace;
 
@@ -8,7 +8,7 @@ body {
 }
 
 .dark {
-    body {
+    body .page {
         background-color: rgb(var(--color-gray-900));
         color: rgb(var(--color-gray-200));
     }
