@@ -14,74 +14,22 @@
       </div>
       <div class="">
         <UButton
-          :label="'Projects'"
           
           color="primary"
           variant="soft"
           square
           :to="'/projects'"
-        />
+        >
+      {{ _("projects") }}
+      </UButton>
       </div>
     </UContainer>
-
-    <USlideover v-model="isOpen">
-      <div class="p-4 flex-1">
-        <UButton
-          color="gray"
-          variant="ghost"
-          size="sm"
-          icon="i-heroicons-x-mark-20-solid"
-          class="flex lg:hidden ml-auto end-5 top-5 z-10"
-          square
-          padded
-          @click="isOpen = false"
-        />
-        <UVerticalNavigation class="py-4" :links="links" />
-      </div>
-    </USlideover>
   </header>
 </template>
 
 <script setup lang="ts">
-const isOpen = ref(false);
+import { _ } from "~/.pruvious/client";
 
-const links = [
-  {
-    label: "Home",
-    avatar: {
-      src: "https://avatars.githubusercontent.com/u/739984?v=4",
-    },
-    to: "/",
-    badge: 100,
-  },
-  {
-    label: "Services",
-    icon: "i-heroicons-home",
-    to: "/getting-started/installation",
-  },
-  {
-    label: "About us",
-    icon: "i-heroicons-chart-bar",
-    to: "/components/horizontal-navigation",
-  },
-  {
-    label: "News",
-    icon: "i-heroicons-command-line",
-    to: "/components/command-palette",
-  },
-  {
-    label: "Contact",
-    icon: "i-heroicons-command-line",
-    to: "/components/command-palette",
-  },
-];
-
-onMounted(() => {
-  // Close Mobile Nav when resizing the Viewport
-  window.addEventListener("resize", () => {
-    isOpen.value = false;
-  });
-});
 </script>
 
 <style scoped></style>

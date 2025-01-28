@@ -40,6 +40,15 @@ export default defineNuxtConfig({
   
 
   pruvious: {
+    language: {
+      supported: [
+        { code: 'en', name: 'English' },
+        { code: 'de', name: 'Deutsch' }
+      ],
+      primary: 'de',
+      prefixPrimary: false,
+      localStorageKey: 'language',
+    },
     uploads: {
       drive: {
         type: 'local',
