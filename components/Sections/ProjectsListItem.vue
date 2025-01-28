@@ -54,7 +54,6 @@ import { PruviousHTML } from "#components";
 import TextSchuffle from "../ui/TextSchuffle.vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
 type Props = {
   title: string;
@@ -72,6 +71,8 @@ const image = ref<HTMLElement | null>(null);
 const projectCard = ref<HTMLElement | null>(null);
 
 onMounted(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     if (projectCard.value && section.value && image.value) {
         const tl = gsap.timeline({
             scrollTrigger: {

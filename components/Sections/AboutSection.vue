@@ -19,7 +19,6 @@
 <script setup lang="ts">
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger)
 
 
 type Props = {
@@ -34,6 +33,7 @@ const section = ref<HTMLDivElement | null>(null);
 const text = ref<HTMLHeadingElement | null>(null);
 
 onMounted(() => {
+  gsap.registerPlugin(ScrollTrigger)
   if (text.value && text.value.textContent && section.value) {
     text.value.innerHTML = text.value.textContent.replace(
       /\S/g,
