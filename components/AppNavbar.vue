@@ -1,6 +1,6 @@
 <template>
   <header
-    class="not-prose backdrop-blur border-b border-gray-200 dark:border-gray-800 fixed w-full top-0 z-50 pt-4"
+    class="not-prose backdrop-blur border-b border-gray-200 dark:border-gray-800 fixed w-full top-0 z-50 py-4"
   >
     <UContainer class="flex items-center justify-between">
       <div class="flex items-center gap-1.5">
@@ -9,26 +9,24 @@
           :aria-label="'label'"
           class="flex-shrink-0 font-bold text-xl text-gray-900 dark:text-white flex items-end gap-1.5"
         >
-          Logo
+          Stephane Dondyas
         </NuxtLink>
       </div>
       <div class="flex-1 hidden lg:flex items-center justify-end">
-        <UHorizontalNavigation :links="links" :ui="{
-          wrapper: 'justify-end',
-        }"/>
-      </div>
-      <div class="flex items-right gap-1.5 ms-4">
-        <UButton size="sm" color="primary" square variant="solid"
-          >Call to action</UButton
-        >
+        <UHorizontalNavigation
+          :links="links"
+          :ui="{
+            wrapper: 'justify-end',
+          }"
+        />
       </div>
       <div class="lg:hidden ms-2">
         <UButton
-          icon="i-heroicons-bars-2-solid"
+          :label="'projects'"
           size="sm"
           color="primary"
+          variant="ghost"
           square
-          variant="solid"
           @click="isOpen = !isOpen"
         />
       </div>
@@ -86,14 +84,12 @@ const links = [
   },
 ];
 
-
 onMounted(() => {
   // Close Mobile Nav when resizing the Viewport
-    window.addEventListener('resize', () => {
-      isOpen.value = false
-    })
-})
-
+  window.addEventListener("resize", () => {
+    isOpen.value = false;
+  });
+});
 </script>
 
 <style scoped></style>
