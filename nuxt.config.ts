@@ -10,6 +10,9 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@tresjs/nuxt'
   ],
+  plugins: [
+    '~/plugins/error-handler.ts',
+  ],
   googleFonts: {
     families: {
       "Source Code Pro": [400, 700],
