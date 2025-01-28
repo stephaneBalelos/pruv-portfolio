@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/google-fonts',
     '@nuxtjs/color-mode',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    '@tresjs/nuxt'
   ],
   googleFonts: {
     families: {

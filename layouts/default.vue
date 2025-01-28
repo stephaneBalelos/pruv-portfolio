@@ -2,6 +2,7 @@
   <div>
     <AppNavbar />
     <main>
+      <SectionsFlowField />
       <slot />
     </main>
     <AppFooter />

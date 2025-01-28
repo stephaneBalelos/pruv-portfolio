@@ -81,8 +81,6 @@ watch(counter, () => {
     return;
   }
   shuffleCharacters();
-
-  console.log(state.currentRange);
 });
 </script>
 
