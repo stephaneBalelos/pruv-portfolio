@@ -71,6 +71,10 @@ const cameraZ = computed(() => {
 
 watch(cameraZ, () => console.log(cameraZ.value));
 
+watch([width, height], () => {
+  initFlowfield(width.value, height.value);
+});
+
 </script>
 
 <style scoped></style>

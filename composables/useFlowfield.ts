@@ -28,13 +28,11 @@ export const useFlowfield = createGlobalState(() => {
         activeIndex: 0
     })
 
-    function initFlowfield(cols: number, rows: number) {
+    function initFlowfield(width: number, height: number) {
         const flowfield: FlowfieldVector[] = []
         
-        state.cols = Math.floor(cols / state.scale)
-        state.rows = Math.floor(rows / state.scale)
-
-        console.log(state.cols, state.rows)
+        state.cols = Math.floor(width / state.scale)
+        state.rows = Math.floor(height / state.scale)
 
         for (let y = 0; y <= state.rows; y++) {
             for (let x = 0; x < state.cols; x++) {
@@ -62,7 +60,6 @@ export const useFlowfield = createGlobalState(() => {
         }
 
         state.flowfield = flowfield
-        console.log(state.flowfield.length)
     }
 
     return { state, initFlowfield }
