@@ -65,11 +65,8 @@ onMounted(() => {
 });
 
 const cameraZ = computed(() => {
-    console.log([width.value, height.value]);
     return (Math.max(width.value, height.value) / 2) / (2 * Math.tan(Math.PI / 6)) ;
 })
-
-watch(cameraZ, () => console.log(cameraZ.value));
 
 watch([width, height], () => {
   initFlowfield(width.value, height.value);

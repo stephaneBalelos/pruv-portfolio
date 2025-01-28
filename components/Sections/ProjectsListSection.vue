@@ -18,7 +18,6 @@ import ProjectsListItem from "./ProjectsListItem.vue";
 const { data } = await useAsyncData("projects", async () => {
   const response = await $fetch("/api/projects");
 
-  console.log(response);
   return response;
 });
 </script>
