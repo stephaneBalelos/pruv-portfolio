@@ -1,15 +1,2 @@
-body {
-    background-color: rgb(var(--color-gray-100));
-    font-family: 'Source Code Pro', monospace;
-
-    main {
-        min-height: 100dvh;
-    }
-}
-
-.dark {
-    body {
-        background-color: rgb(var(--color-gray-900));
-        color: rgb(var(--color-gray-200));
-    }
-}
+@use './base.scss';
+@use './partials/animated_bg_text.scss';

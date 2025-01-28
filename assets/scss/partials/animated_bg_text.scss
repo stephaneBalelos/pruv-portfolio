@@ -1,0 +1,13 @@
+.bg-animated-text {
+    text-decoration: none;
+    line-height: 1;
+    display: inline-block;
+
+    .letter {
+        color: transparent;
+        background: linear-gradient(to right, rgb(var(--color-gray-100) / 1), rgb(var(--color-gray-100) / 1) 50%, rgb(var(--color-gray-100)/ .5) 50%);
+        background-clip: text;
+        background-size: 200% 100%;
+        background-position: 100% 0%;
+    }
+}
