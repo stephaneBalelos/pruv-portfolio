@@ -33,6 +33,7 @@
           variant="link"
           label="Saunahuus Relaunch"
           class="px-0"
+          :to="'/projects'"
           
         />
         <UButton
@@ -41,6 +42,7 @@
           variant="link"
           label="Karjolen App"
           class="px-0"
+          :to="'/projects'"
         />
       </div>
 
