@@ -14,7 +14,7 @@
         ref="projectCard"
           class="absolute w-full lg:w-1/2 bottom-8 lg:bottom-24 left-0 flex flex-col bg-white dark:bg-gray-800 p-8 shadow-lg"
         >
-          <div class="text-sm text-gray-900 dark:text-gray-200">Project</div>
+          <div class="text-sm text-gray-900 dark:text-gray-200">{{ props.label }}</div>
           <div class="text-4xl font-bold text-gray-900 dark:text-gray-200">
             <TextSchuffle :interval="100">{{ props.title }}</TextSchuffle>
           </div>
@@ -56,6 +56,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 type Props = {
+  label?: string;
   title: string;
   description: string;
   liveUrl?: string;
