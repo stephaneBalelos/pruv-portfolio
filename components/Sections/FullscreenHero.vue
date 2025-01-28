@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex items-center justify-center h-screen w-full pointer-events-none">
+  <div class="relative flex items-center justify-center h-screen w-full">
     <UContainer>
         <div class="flex flex-col text-center">
           <div
