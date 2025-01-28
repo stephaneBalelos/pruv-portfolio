@@ -1,6 +1,6 @@
 <template>
   <UContainer>
-      <div class="flex flex-col lg:flex-row gap-8 items-center justify-between">
+      <div class="flex flex-col lg:flex-row gap-8 items-center justify-between mb-16">
           <div class="flex flex-col w-full">
             <h2 class="text-2xl font-bold">{{ props.title }}</h2>
             <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
@@ -18,10 +18,13 @@
               </div>
             </UForm>
           </div>
-          <div class="w-full flex flex-col items-end gap-2">  
-            <UButton color="gray" variant="link">Button</UButton>
-            <UButton color="gray" variant="link">Button</UButton>
-            <UButton color="gray" variant="link">Button</UButton>
+          <div class="w-full flex flex-col items-center lg:items-end gap-2">  
+            <UButton color="gray" variant="link" icon="i-heroicons-envelope">
+              hello@stephanedondyas.dev
+            </UButton>
+            <UButton color="gray" variant="link" icon="i-bxl-github">
+              @stephaneBalelos
+            </UButton>
           </div>
       </div>
   </UContainer>
