@@ -4,15 +4,17 @@
   >
     <UContainer class="flex flex-col lg:flex-row gap-6 justify-between">
       <div class="flex flex-col items-center gap-2">
-        <UButton
-          size="sm"
-          color="primary"
-          block
-          variant="solid"
-          :label="colorMode.preference === 'dark' ? 'Light Mode' : 'Dark Mode'"
-          :icon="colorMode.preference === 'dark' ? 'i-heroicons-moon' : 'i-heroicons-sun'"
-          @click="toggleColorMode"
-        />
+        <ClientOnly>
+          <UButton
+            size="sm"
+            color="primary"
+            block
+            variant="solid"
+            :label="colorMode.preference === 'dark' ? 'Light Mode' : 'Dark Mode'"
+            :icon="colorMode.preference === 'dark' ? 'i-heroicons-moon' : 'i-heroicons-sun'"
+            @click="toggleColorMode"
+          />
+        </ClientOnly>
         <UButton
           icon="i-heroicons-cog"
           size="sm"

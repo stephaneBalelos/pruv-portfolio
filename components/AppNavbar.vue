@@ -12,22 +12,14 @@
           Stephane Dondyas
         </NuxtLink>
       </div>
-      <div class="flex-1 hidden lg:flex items-center justify-end">
-        <UHorizontalNavigation
-          :links="links"
-          :ui="{
-            wrapper: 'justify-end',
-          }"
-        />
-      </div>
-      <div class="lg:hidden ms-2">
+      <div class="">
         <UButton
-          :label="'projects'"
-          size="sm"
+          :label="'Projects'"
+          
           color="primary"
-          variant="ghost"
+          variant="soft"
           square
-          @click="isOpen = !isOpen"
+          :to="'/projects'"
         />
       </div>
     </UContainer>
