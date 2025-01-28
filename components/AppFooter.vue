@@ -3,60 +3,45 @@
     class="backdrop-blur border-t border-gray-200 dark:border-gray-800 py-6 not-prose"
   >
     <UContainer class="flex flex-col lg:flex-row gap-6 justify-between">
-      <UButton
-        icon="i-heroicons-pencil-square"
-        size="sm"
-        color="primary"
-        square
-        variant="solid"
-        @click="toggleColorMode"
-      />
-      <div class="flex flex-col">
-        <div class="mb-2">Socials</div>
+      <div class="flex flex-col items-center gap-2">
         <UButton
-          icon="i-simple-icons-facebook"
           size="sm"
           color="primary"
-          variant="link"
-          label="Facebook"
-          :trailing="true"
+          block
+          variant="solid"
+          :label="colorMode.preference === 'dark' ? 'Light Mode' : 'Dark Mode'"
+          :icon="colorMode.preference === 'dark' ? 'i-heroicons-moon' : 'i-heroicons-sun'"
+          @click="toggleColorMode"
         />
         <UButton
-          icon="i-simple-icons-instagram"
+          icon="i-heroicons-cog"
           size="sm"
+          block
           color="primary"
           variant="link"
-          label="Facebook"
-          :trailing="true"
-        />
-        <UButton
-          icon="i-simple-icons-linkedin"
-          size="sm"
-          color="primary"
-          variant="link"
-          label="Facebook"
+          label="Cookies"
           :trailing="true"
         />
       </div>
       <div class="flex flex-col">
-        <div class="mb-2">External</div>
+        <div class="mb-2">Projects</div>
         <UButton
-          icon="i-heroicons-arrow-up-right-16-solid"
           size="sm"
           color="primary"
           variant="link"
-          label="External Link to this"
-          :trailing="true"
+          label="Saunahuus Relaunch"
+          class="px-0"
+          
         />
         <UButton
-          icon="i-heroicons-arrow-up-right-16-solid"
           size="sm"
           color="primary"
           variant="link"
-          label="External Service"
-          :trailing="true"
+          label="Karjolen App"
+          class="px-0"
         />
       </div>
+
       <div class="flex flex-col">
         <div class="mb-2">Legal</div>
         <UButton
@@ -64,29 +49,16 @@
           color="primary"
           variant="link"
           label="Privacy Policy"
-          :trailing="true"
+          class="px-0"
+          :to="'/legal/privacy-policy'"
         />
         <UButton
           size="sm"
           color="primary"
           variant="link"
           label="Impressum"
-          :trailing="true"
-        />
-        <UButton
-          size="sm"
-          color="primary"
-          variant="link"
-          label="Terms & Conditions"
-          :trailing="true"
-        />
-        <UButton
-          icon="i-heroicons-cog"
-          size="sm"
-          color="primary"
-          variant="link"
-          label="Cookies"
-          :trailing="true"
+          class="px-0"
+          :to="'/legal/imprint'"
         />
       </div>
     </UContainer>
