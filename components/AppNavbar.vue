@@ -20,7 +20,7 @@
           square
           :to="'/projects'"
         >
-      {{ _("projects") }}
+      {{ $t("projects") }}
       </UButton>
       </div>
     </UContainer>
@@ -28,7 +28,6 @@
 </template>
 
 <script setup lang="ts">
-import { _ } from "~/.pruvious/client";
 
 </script>
 

@@ -8,11 +8,13 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxtjs/color-mode',
     '@nuxt/eslint',
-    '@tresjs/nuxt'
+    '@tresjs/nuxt',
+    '@nuxtjs/i18n'
   ],
   plugins: [
     '~/plugins/error-handler.ts',
   ],
+
   googleFonts: {
     families: {
       "Source Code Pro": [400, 700],
@@ -24,6 +26,13 @@ export default defineNuxtConfig({
         class: ''
       }
     }
+  },
+
+  i18n: {
+    strategy: 'no_prefix',
+    locales: ['de', 'en'],
+    defaultLocale: 'de',
+    vueI18n: './i18n.config.ts' 
   },
 
   css: ['~/assets/scss/main.scss'],

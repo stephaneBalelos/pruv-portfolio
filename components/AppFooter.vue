@@ -24,7 +24,7 @@
             block
             variant="link"
             :label="
-              colorMode.preference === 'dark' ? _('light_mode') : _('dark_mode')
+              colorMode.preference === 'dark' ? $t('light_mode') : $t('dark_mode')
             "
             :icon="
               colorMode.preference === 'dark'
@@ -40,12 +40,12 @@
           block
           color="primary"
           variant="link"
-          :label="_('cookies')"
+          :label="$t('cookies')"
           :trailing="true"
         />
       </div>
       <div class="flex flex-col">
-        <div class="mb-2">{{ _('projects') }}</div>
+        <div class="mb-2">{{ $t('projects') }}</div>
         <UButton
           size="sm"
           color="primary"
@@ -65,12 +65,12 @@
       </div>
 
       <div class="flex flex-col">
-        <div class="mb-2">{{ _('legal') }}</div>
+        <div class="mb-2">{{ $t('legal') }}</div>
         <UButton
           size="sm"
           color="primary"
           variant="link"
-          :label="_('privacy_policy')"
+          :label="$t('privacy_policy')"
           class="px-0"
           :to="'/legal/privacy-policy'"
         />
@@ -78,7 +78,7 @@
           size="sm"
           color="primary"
           variant="link"
-          :label="_('imprint')"
+          :label="$t('imprint')"
           class="px-0"
           :to="'/legal/imprint'"
         />
@@ -88,14 +88,14 @@
 </template>
 
 <script setup lang="ts">
-import { usePage, useLanguage, _ } from "#pruvious/client";
+import { usePage, useLanguage } from "#pruvious/client";
 
 const language = useLanguage();
 
+const { setLocale } = useI18n();
+
 const page = usePage();
 const colorMode = useColorMode();
-
-console.log(page.value);
 
 function toggleColorMode() {
   colorMode.preference = colorMode.preference === "dark" ? "light" : "dark";
@@ -103,8 +103,10 @@ function toggleColorMode() {
 
 function toggleLanguage(code: 'de' | 'en') {
   if (page.value) {
+    setLocale(code);
     const path = page.value.translations[code];
     navigateTo(path)
+
   }
 }
 </script>
