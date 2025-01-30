@@ -8,4 +8,7 @@ import { SharedLenisScrollConatiner } from "#components";
       <NuxtPage />
     </SharedLenisScrollConatiner>
   </div>
+  <ClientOnly>
+    <ExternalPlausibleScript />
+  </ClientOnly>
 </template>
