@@ -75,16 +75,6 @@ export default defineNuxtConfig({
     },
     database: process.env.NUXT_PRUVIOUS_DATABASE,
   },
-  scripts: {
-    registry: {
-      plausibleAnalytics: {
-        domain: process.env.NUXT_PLAUSIBLE_DOMAIN ?? '',
-        scriptInput: {
-          src: process.env.NUXT_PLAUSIBLE_SCRIPT_URL ?? '',
-        }
-      }
-    }
-  },
 
   runtimeConfig: {
     turnstile: {
