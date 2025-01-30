@@ -5,8 +5,8 @@
         <div class="absolute w-9/12 h-1/2 lg:h-full top-0 right-0">
           <img
           ref="image"
-            src="https://picsum.photos/1920/1280"
-            alt="Project Image"
+            :src="props.imageUrl"
+            :alt="props.title"
             class="w-full h-full object-cover m-0"
           >
         </div>

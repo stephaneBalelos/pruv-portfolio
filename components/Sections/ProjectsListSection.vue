@@ -6,18 +6,26 @@
       :label="$t('projects')"
       :title="project.title"
       :description="project.description"
-      :image-url="'dasdsa'"
-      :upload-id="project.image?.uploadId"
+      :image-url="project.image?.src"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import ProjectsListItem from "./ProjectsListItem.vue";
+import { useLanguage } from '#pruvious/client'
+
+const language = useLanguage()
 
 
-const { data } = await useAsyncData("projects", async () => {
-  const response = await $fetch("/api/projects");
+const { data } = await useAsyncData(async () => {
+  const response = await $fetch("/api/projects", {
+    headers: {
+      'Accept-Language': language.value as string
+    }
+  });
+
+  console.log(response);
 
   return response;
 });

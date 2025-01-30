@@ -72,7 +72,7 @@
           variant="link"
           :label="$t('privacy_policy')"
           class="px-0"
-          :to="'/legal/privacy-policy'"
+          :to="`${language === 'de' ? '' : '/en'}/legal/datenschutz`"
         />
         <UButton
           size="sm"
@@ -80,7 +80,7 @@
           variant="link"
           :label="$t('imprint')"
           class="px-0"
-          :to="'/legal/imprint'"
+          :to="`${language === 'de' ? '' : '/en'}/legal/impressum`"
         />
       </div>
     </UContainer>
@@ -109,6 +109,7 @@ function toggleLanguage(code: 'de' | 'en') {
 
   }
 }
+
 </script>
 
 <style scoped></style>

@@ -8,7 +8,6 @@
       :near="0.1"
       :far="2000"
     />
-    <OrbitControls />
 
     <!-- <TresMesh>
       <TresPlaneGeometry

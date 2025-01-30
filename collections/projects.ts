@@ -1,31 +1,27 @@
 import { defineCollection } from '#pruvious'
-import { pageLikeCollection } from '#pruvious/standard'
 
-export default defineCollection(
-    pageLikeCollection({
-        name: 'projects',
-        pathPrefix: 'projects',
-        allowedLayouts: ['default'],
-        additionalFields: {
-            title: {
-                type: 'text',
-                options: {
-                    required: true,
-                },
-            },
-            image: {
-                type: 'image',
-                options: {
-                    required: true,
-                },
-            },
-            description: {
-                type: 'editor',
-                options: {
-                    required: true,
-                },
+export default defineCollection({
+    name: 'projects',
+    mode: 'multi',
+    translatable: true,
+    fields: {
+        title: {
+            type: 'text',
+            options: {
+                required: true,
             },
         },
-        additionalPublicPagesFields: ['title', 'image', 'description'],
-    })
-)
+        image: {
+            type: 'image',
+            options: {
+                required: true,
+            },
+        },
+        description: {
+            type: 'editor',
+            options: {
+                required: true,
+            },
+        },
+    }
+})
