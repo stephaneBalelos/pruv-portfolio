@@ -1,9 +1,8 @@
 import { createGlobalState } from "@vueuse/core"
 import { Vector3 } from "three"
-import { mapRange } from "~/utils"
+import { perlinNoise2D } from "~/utils/noises"
 
 type FlowfieldVector = {
-    position: { x: number, y: number, z: number }
     direction: { x: number, y: number, z: number }
 }
 
@@ -13,7 +12,9 @@ type State = {
     cols: number
     rows: number,
     scale: number,
-    activeIndex?: number
+    xOff: number,
+    yOff: number,
+    zOff: number
 }
 
 export const useFlowfield = createGlobalState(() => {
@@ -21,11 +22,13 @@ export const useFlowfield = createGlobalState(() => {
 
     const state = reactive<State>({
         flowfield: [],
-        particlesCount: 20,
+        particlesCount: 50,
         cols: 0,
         rows: 0,
         scale: 20,
-        activeIndex: 0
+        xOff: .1,
+        yOff: .1,
+        zOff: 0.00003
     })
 
     function initFlowfield(width: number, height: number) {
@@ -34,33 +37,53 @@ export const useFlowfield = createGlobalState(() => {
         state.cols = Math.floor(width / state.scale)
         state.rows = Math.floor(height / state.scale)
 
-        for (let y = 0; y <= state.rows; y++) {
+        let yOff = 0
+        let zOff = 0
+        for (let y = 0; y < state.rows; y++) {
+            let xOff = 0
             for (let x = 0; x < state.cols; x++) {
+                const noise = perlinNoise2D(xOff, yOff, zOff)
                 const index = x + y * state.cols
-                const angle = Math.PI  / 2
-                const position = new Vector3(
-                    mapRange(x, 0, state.cols, -state.cols * state.scale / 2, state.cols * state.scale / 2),
-                    mapRange(y, 0, state.rows, -state.rows * state.scale / 2, state.rows * state.scale / 2),
-                    0
-                )
-                const direction = position.clone().sub(new Vector3(0, 0, 0)).normalize().multiplyScalar(-1).applyAxisAngle(new Vector3(0, 0, 1), angle)
+                const angle = Math.PI * noise * 8
+                const direction = new Vector3(Math.cos(angle), Math.sin(angle), 0).normalize()
                 flowfield[index] = {
-                    position: { 
-                        x: position.x,
-                        y: position.y,
-                        z: position.z
-                    },
                     direction: { 
                         x: direction.x,
                         y: direction.y,
                         z: direction.z
                     }
                 }
+                xOff += state.xOff
             }
+            yOff += state.yOff
+            zOff += state.zOff
         }
 
         state.flowfield = flowfield
     }
 
-    return { state, initFlowfield }
+    function updateFlowfield() {
+        let yOff = 0
+        for (let y = 0; y < state.rows; y++) {
+            let xOff = 0
+            for (let x = 0; x < state.cols; x++) {
+                const noise = perlinNoise2D(xOff, yOff, state.zOff)
+                const index = x + y * state.cols
+                const angle = 4*Math.PI * noise
+                const direction = new Vector3(Math.cos(angle), Math.sin(angle), 0)
+                state.flowfield[index].direction = {
+                    x: direction.x,
+                    y: direction.y,
+                    z: direction.z
+                }
+                xOff += state.xOff
+            }
+            yOff += state.yOff
+            state.zOff += 0.0003
+        }
+    }
+
+
+
+    return { state, initFlowfield, updateFlowfield }
 })

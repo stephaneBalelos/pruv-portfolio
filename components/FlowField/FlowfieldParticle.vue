@@ -1,27 +1,30 @@
 <template>
-  <CatmullRomCurve3
-    v-for="(positions, index) in lastPositions"
-    ref="particleRefs"
-    :key="index"
-    :points="positions.map((pos) => new Vector3(pos.x, pos.y, pos.z))"
-    :segments="20"
-    :line-width="1"
-    color="green"
-  />
+  <TresGroup v-for="(positions, index) in lastPositions" :key="index">
+    <CatmullRomCurve3
+      v-if="positions.length > 3"
+      ref="particleRefs"
+      :key="index"
+      :points="positions.map((pos) => new Vector3(pos.x, pos.y, pos.z))"
+      :segments="98"
+      :line-width=".5"
+      :world-units="true"
+      color="#cade9c"
+    />
+  </TresGroup>
 </template>
 
 <script setup lang="ts">
 import { shallowRef } from "vue";
 import { useFlowfield } from "~/composables/useFlowfield";
-import { mapRange } from "~/utils";
 import { Vector3 } from "three";
-import { useInterval } from "@vueuse/core";
+import { useInterval, useWindowSize } from "@vueuse/core";
 
 const particleRefs = shallowRef([]);
 
 const { state } = useFlowfield();
 
 const { onBeforeRender } = useLoop();
+const { width, height } = useWindowSize();
 
 const { counter, resume } = useInterval(100, {
   controls: true,
@@ -53,20 +56,7 @@ const lastPositions = ref<
     y: number;
     z: number;
   }[][]
->([
-  [
-    {
-      x: position.value.x,
-      y: position.value.y,
-      z: position.value.z,
-    },
-    {
-      x: position.value.x,
-      y: position.value.y,
-      z: position.value.z,
-    },
-  ],
-]);
+>([[]]);
 
 watch(
   () => counter.value,
@@ -97,24 +87,23 @@ onBeforeRender(() => {
 
     const x = mapRange(
       position.value.x,
-      (-state.cols * state.scale) / 2,
-      (state.cols * state.scale) / 2,
+      -width.value / 2,
+      width.value / 2,
       0,
-      state.cols
+      width.value
     );
     const y = mapRange(
       position.value.y,
-      (-state.rows * state.scale) / 2,
-      (state.rows * state.scale) / 2,
+      -height.value / 2,
+      height.value / 2,
       0,
-      state.rows
+      height.value
     );
 
-    const index = Math.floor(x) + Math.floor(y) * state.cols;
+    const index =
+      Math.floor(x / state.scale) + Math.floor(y / state.scale) * state.cols;
 
     const vector = state.flowfield[index];
-
-    state.activeIndex = index;
 
     if (vector) {
       force.x = vector.direction.x;
@@ -145,7 +134,6 @@ onBeforeRender(() => {
 
     // Update particle position
     updateLastPositions();
-
 
     // Reset acceleration
     acceleration.value.x = 0;
@@ -178,42 +166,48 @@ function chechEdges() {
 function updateLastPositions(skip = false) {
   // skip create a new curve if the particle reached the edge
   if (position.value) {
-
     if (skip) {
-        // copy the first item to the last item to create the last curve
-        lastPositions.value.push(lastPositions.value[0]);
-
-        // Update the first item with the current position
-        lastPositions.value[0] = [
-          {
-            x: position.value.x,
-            y: position.value.y,
-            z: position.value.z,
-          },
-        ];
-    }
-
-    for (let i = 0; i < lastPositions.value.length; i++) {
-      // Remove the first position if it's too long
-      if (lastPositions.value[i].length > 40) {
-        lastPositions.value[i].shift();
-      }
-      if (i === 0 && position.value) {
-        lastPositions.value[i].push({
+      lastPositions.value.push([
+        {
           x: position.value.x,
           y: position.value.y,
           z: position.value.z,
-        });
+        },
+      ]);
+    }
+    if (lastPositions.value.length === 0) {
+      lastPositions.value.push([
+        {
+          x: position.value.x,
+          y: position.value.y,
+          z: position.value.z,
+        },
+      ]);
+    } else if (lastPositions.value.length === 1) {
+      lastPositions.value[0].push({
+        x: position.value.x,
+        y: position.value.y,
+        z: position.value.z,
+      });
+
+      if (lastPositions.value[0].length > 98) {
+        lastPositions.value[0].shift();
+      }
+    } else {
+      // Update the last curve
+      lastPositions.value[lastPositions.value.length - 1].push({
+        x: position.value.x,
+        y: position.value.y,
+        z: position.value.z,
+      });
+
+      // clear the first curve
+      if (lastPositions.value[0].length < 4) {
+        lastPositions.value.shift();
+      } else {
+        lastPositions.value[0].shift();
       }
 
-      if(i > 0) {
-        // remove the last position
-        if(lastPositions.value[i].length > 2) {
-            lastPositions.value[i].shift();
-        } else {
-            lastPositions.value.splice(i, 1);
-        }
-      }
     }
   }
 }
