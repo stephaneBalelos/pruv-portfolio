@@ -26,3 +26,5 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 volumes:
   postgres-data:
+    driver_opts:
+      type: cifs
