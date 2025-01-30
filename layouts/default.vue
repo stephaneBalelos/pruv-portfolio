@@ -1,8 +1,8 @@
 <template>
   <div class="page">
     <AppNavbar />
-    <main>
-      <SectionsFlowField />
+    <SectionsFlowField />
+    <main class="relative z-10">
       <slot />
     </main>
     <AppFooter />

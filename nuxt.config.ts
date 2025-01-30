@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/eslint',
     '@tresjs/nuxt',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@nuxtjs/turnstile'
   ],
   plugins: [
     '~/plugins/error-handler.ts',
@@ -26,6 +27,10 @@ export default defineNuxtConfig({
         class: ''
       }
     }
+  },
+
+  turnstile: {
+    siteKey: process.env.NUXT_TURNSTILE_SITE_KEY,
   },
 
   i18n: {
@@ -69,5 +74,21 @@ export default defineNuxtConfig({
       secretKey: process.env.NUXT_JWT_SECRET_KEY,
     },
     database: process.env.NUXT_PRUVIOUS_DATABASE,
+  },
+  scripts: {
+    registry: {
+      plausibleAnalytics: {
+        domain: process.env.NUXT_PLAUSIBLE_DOMAIN ?? '',
+        scriptInput: {
+          src: process.env.NUXT_PLAUSIBLE_SCRIPT_URL ?? '',
+        }
+      }
+    }
+  },
+
+  runtimeConfig: {
+    turnstile: {
+      secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY,
+    }
   }
 })

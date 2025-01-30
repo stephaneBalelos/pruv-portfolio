@@ -13,14 +13,17 @@
               <UFormGroup label="How can I help you?" name="message">
                 <UTextarea v-model="state.message" />
               </UFormGroup>
+              <NuxtTurnstile ref="turnstile" v-model="state.token" :appearance="'interaction-only'" :options="{ action: 'vue', language: language ?? undefined }"/>
               <div class="flex justify-center py-8">
-                <UButton type="submit"> Connect </UButton>
+                <UButton v-if="state.token" type="submit"> Connect </UButton>
+                <UButton v-if="!state.token" @click.prevent="turnstile.reset()">Refresh </UButton>
               </div>
             </UForm>
           </div>
           <div class="w-full flex flex-col items-center lg:items-end gap-2">  
             <UButton color="gray" variant="link" icon="i-heroicons-envelope">
               hello@stephanedondyas.dev
+
             </UButton>
             <UButton color="gray" variant="link" icon="i-bxl-github">
               @stephaneBalelos
@@ -33,6 +36,7 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from "#ui/types";
 import { z } from "zod";
+import { useLanguage } from "~/.pruvious/client";
 
 type Props = {
   title: string;
@@ -40,10 +44,13 @@ type Props = {
 
 const props = defineProps<Props>();
 
+const language = useLanguage();
+
 const schema = z.object({
   name: z.string().nonempty(),
   email: z.string().email(),
   message: z.string().nonempty(),
+  token: z.string().nonempty(),
 });
 
 type Schema = z.infer<typeof schema>;
@@ -52,15 +59,20 @@ const state = reactive({
   name: "",
   email: "",
   message: "",
+  token: "",
 });
 
+const turnstile = ref();
+
 async function onSubmit($event: FormSubmitEvent<Schema>) {
+  console.log($event.data);
     const response = await $fetch('/api/contact-requests', {
     method: 'post',
     body: {
         name: $event.data.name,
         email: $event.data.email,
         message: $event.data.message,
+        token: $event.data.token,
     }
   })
 
