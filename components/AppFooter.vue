@@ -34,15 +34,14 @@
             @click="toggleColorMode"
           />
         </ClientOnly>
-        <UButton
+        <!-- <UButton
           icon="i-heroicons-cog"
           size="sm"
           block
           color="primary"
           variant="link"
           :label="$t('cookies')"
-          :trailing="true"
-        />
+        /> -->
       </div>
       <div class="flex flex-col">
         <div class="mb-2">{{ $t('projects') }}</div>
