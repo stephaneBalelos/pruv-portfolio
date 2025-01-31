@@ -20,11 +20,10 @@
             </UForm>
           </div>
           <div class="w-full flex flex-col items-center lg:items-end gap-2">  
-            <UButton color="gray" variant="link" icon="i-heroicons-envelope">
+            <UButton color="gray" variant="link" icon="i-heroicons-envelope" :to="'mailto:hello@stephanedondyas.dev'">
               hello@stephanedondyas.dev
-
             </UButton>
-            <UButton color="gray" variant="link" icon="i-bxl-github">
+            <UButton color="gray" variant="link" icon="i-bxl-github" :to="'https://github.com/stephaneBalelos'" target="_blank">
               @stephaneBalelos
             </UButton>
           </div>
@@ -49,10 +48,18 @@ const { t } = useI18n({
 });
 
 const schema = z.object({
-  name: z.string().nonempty(),
-  email: z.string().email(),
-  message: z.string().nonempty(),
-  token: z.string().nonempty(),
+  name: z.string().nonempty(
+    t('form.error.name')
+  ),
+  email: z.string().email(
+    t('form.error.email')
+  ),
+  message: z.string().nonempty(
+    t('form.error.message')
+  ),
+  token: z.string().nonempty(
+    t('form.error.token')
+  ),
 });
 
 type Schema = z.infer<typeof schema>;
@@ -98,7 +105,12 @@ async function onSubmit($event: FormSubmitEvent<Schema>) {
       "name": "Wie ist Ihr Name?",
       "email": "Wie kann ich Sie erreichen?",
       "message": "Wie kann ich Ihnen helfen?",
-      "submit": "Absenden"
+      "submit": "Absenden",
+      "error": {
+        "name": "Bitte geben Sie Ihren Namen ein.",
+        "email": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
+        "message": "Bitte geben Sie Ihre Nachricht ein."
+      }
     }
   },
   "en": {
@@ -106,7 +118,12 @@ async function onSubmit($event: FormSubmitEvent<Schema>) {
       "name": "What's your name?",
       "email": "How can I reach you?",
       "message": "How can I help you?",
-      "submit": "Connect"
+      "submit": "Connect",
+      "error": {
+        "name": "Please enter your name.",
+        "email": "Please enter your email address.",
+        "message": "Please enter your message."
+      }
     }
   }
 }
