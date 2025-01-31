@@ -16,6 +16,8 @@ services:
       - NUXT_TURNSTILE_SITE_KEY=${NUXT_TURNSTILE_SITE_KEY}
       - NUXT_PLAUSIBLE_DOMAIN=${NUXT_PLAUSIBLE_DOMAIN}
       - NUXT_PLAUSIBLE_SCRIPT_URL=${NUXT_PLAUSIBLE_SCRIPT_URL}
+    volumes:
+      - .uploads:/app/.uploads
   db:
     image: postgres:16-alpine
     volumes:
