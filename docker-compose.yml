@@ -10,7 +10,7 @@ services:
     env_file:
       - .env
     environment:
-      - NUXT_PRUVIOUS_DATABASE=postgres://postgres:${POSTGRES_PASSWORD}@db:5432/postgres
+      - NUXT_PRUVIOUS_DATABASE=postgresql://postgres:${POSTGRES_PASSWORD}@db:5432/postgres
       - NUXT_JWT_SECRET_KEY=${NUXT_JWT_SECRET_KEY}
       - NUXT_TURNSTILE_SECRET_KEY=${NUXT_TURNSTILE_SECRET_KEY}
       - NUXT_TURNSTILE_SITE_KEY=${NUXT_TURNSTILE_SITE_KEY}
@@ -19,7 +19,7 @@ services:
   db:
     image: postgres:16-alpine
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - ./postgres-data:/var/lib/postgresql/data
     env_file:
       - .env
     environment:
