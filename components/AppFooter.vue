@@ -100,13 +100,12 @@ function toggleColorMode() {
   colorMode.preference = colorMode.preference === "dark" ? "light" : "dark";
 }
 
-function toggleLanguage(code: 'de' | 'en') {
+async function toggleLanguage(code: 'de' | 'en') {
   if (page.value) {
-    setLocale(code);
-    console.log(page.value.translations[code]);
+    await setLocale(code);
     const path = page.value.translations[code];
     if (path) {
-      navigateTo(path)
+      navigateTo(path, { external: true})
     }
 
   }

@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import { SharedLenisScrollConatiner } from "#components";
+import { useLanguage } from "~/.pruvious/client";
+
+const language = useLanguage();
+
+const { setLocale } = useI18n();
+
+if (language.value) {
+  setLocale(language.value);
+}
 </script>
 
 <template>

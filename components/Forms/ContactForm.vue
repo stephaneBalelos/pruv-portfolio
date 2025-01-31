@@ -57,9 +57,7 @@ const schema = z.object({
   message: z.string().nonempty(
     t('form.error.message')
   ),
-  token: z.string().nonempty(
-    t('form.error.token')
-  ),
+  token: z.string().nonempty(),
 });
 
 type Schema = z.infer<typeof schema>;
