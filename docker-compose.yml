@@ -19,10 +19,7 @@ services:
   db:
     image: postgres:16-alpine
     volumes:
-      - type: bind
-        source: ./postgres-data
-        target: /var/lib/postgresql/data
-
+      - postgres-data:/var/lib/postgresql/data
     env_file:
       - .env
     environment:
