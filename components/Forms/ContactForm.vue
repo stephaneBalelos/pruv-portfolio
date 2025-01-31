@@ -4,19 +4,18 @@
           <div class="flex flex-col w-full">
             <h2 class="text-2xl font-bold">{{ props.title }}</h2>
             <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-              <UFormGroup label="What's your name" name="name">
+              <UFormGroup :label="t('form.name')" name="name">
                 <UInput v-model="state.name" />
               </UFormGroup>
-              <UFormGroup label="How can I reach you" name="email">
+              <UFormGroup :label="t('form.email')" name="email">
                 <UInput v-model="state.email" />
               </UFormGroup>
-              <UFormGroup label="How can I help you?" name="message">
+              <UFormGroup :label="t('form.message')" name="message">
                 <UTextarea v-model="state.message" />
               </UFormGroup>
               <NuxtTurnstile ref="turnstile" v-model="state.token" :appearance="'interaction-only'" :options="{ action: 'vue', language: language ?? undefined }"/>
               <div class="flex justify-center py-8">
-                <UButton v-if="state.token" type="submit"> Connect </UButton>
-                <UButton v-if="!state.token" @click.prevent="turnstile.reset()">Refresh </UButton>
+                <UButton v-if="state.token" type="submit"> {{ t('form.button') }} </UButton>
               </div>
             </UForm>
           </div>
@@ -45,6 +44,9 @@ type Props = {
 const props = defineProps<Props>();
 
 const language = useLanguage();
+const { t } = useI18n({
+  useScope: 'local'
+});
 
 const schema = z.object({
   name: z.string().nonempty(),
@@ -88,3 +90,24 @@ async function onSubmit($event: FormSubmitEvent<Schema>) {
 <style scoped>
 
 </style>
+
+<i18n lang="json">
+{
+  "de": {
+    "form": {
+      "name": "Wie ist Ihr Name?",
+      "email": "Wie kann ich Sie erreichen?",
+      "message": "Wie kann ich Ihnen helfen?",
+      "submit": "Absenden"
+    }
+  },
+  "en": {
+    "form": {
+      "name": "What's your name?",
+      "email": "How can I reach you?",
+      "message": "How can I help you?",
+      "submit": "Connect"
+    }
+  }
+}
+</i18n>

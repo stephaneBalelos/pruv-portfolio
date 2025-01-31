@@ -103,8 +103,11 @@ function toggleColorMode() {
 function toggleLanguage(code: 'de' | 'en') {
   if (page.value) {
     setLocale(code);
+    console.log(page.value.translations[code]);
     const path = page.value.translations[code];
-    navigateTo(path)
+    if (path) {
+      navigateTo(path)
+    }
 
   }
 }

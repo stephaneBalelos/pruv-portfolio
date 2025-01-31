@@ -1,6 +1,6 @@
 <template>
   <UContainer>
-    <div ref="section" class="relative flex-col lg:flex-row items-center justify-between gap-24">
+    <div ref="section" class="relative flex flex-col lg:flex-row items-center justify-between gap-24">
       <div class="flex flex-col flex-1">
         <h2
           ref="text"
