@@ -15,7 +15,7 @@
               </UFormGroup>
               <NuxtTurnstile ref="turnstile" v-model="state.token" :appearance="'interaction-only'" :options="{ action: 'vue', language: language ?? undefined }"/>
               <div class="flex justify-center py-8">
-                <UButton v-if="state.token" type="submit"> {{ t('form.button') }} </UButton>
+                <UButton v-if="state.token" type="submit"> {{ t('form.submit') }} </UButton>
               </div>
             </UForm>
           </div>
