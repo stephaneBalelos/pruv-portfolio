@@ -3,13 +3,12 @@
     class="backdrop-blur border-t border-gray-200 dark:border-gray-800 py-6 not-prose"
   >
     <UContainer class="flex flex-col lg:flex-row gap-6 justify-between">
-      <div class="flex flex-col items-center gap-2">
+      <div class="flex flex-col lg:flex-row items-center gap-2">
         <div class="flex items-center gap-2">
           <UButton
           v-if="language"
           icon="i-heroicons-globe-europe-africa"
           size="sm"
-          block
           color="primary"
           variant="link"
           @click="toggleLanguage(language == 'de' ? 'en' : 'de')"
@@ -21,7 +20,6 @@
           <UButton
             size="sm"
             color="primary"
-            block
             variant="link"
             :label="
               colorMode.preference === 'dark' ? $t('light_mode') : $t('dark_mode')
@@ -43,7 +41,7 @@
           :label="$t('cookies')"
         /> -->
       </div>
-      <div class="flex flex-col">
+      <!-- <div class="flex flex-col">
         <div class="mb-2">{{ $t('projects') }}</div>
         <UButton
           size="sm"
@@ -61,26 +59,28 @@
           class="px-0"
           :to="'/projects'"
         />
-      </div>
+      </div> -->
 
-      <div class="flex flex-col">
-        <div class="mb-2">{{ $t('legal') }}</div>
-        <UButton
-          size="sm"
-          color="primary"
-          variant="link"
-          :label="$t('privacy_policy')"
-          class="px-0"
-          :to="`${language === 'de' ? '' : '/en'}/legal/datenschutz`"
-        />
-        <UButton
-          size="sm"
-          color="primary"
-          variant="link"
-          :label="$t('imprint')"
-          class="px-0"
-          :to="`${language === 'de' ? '' : '/en'}/legal/impressum`"
-        />
+      <div class="flex flex-col items-center lg:items-end">
+        <div class="mb-2 lg:hidden">{{ $t('legal') }}</div>
+        <div class="flex flex-col lg:flex-row gap-2">
+          <UButton
+            size="sm"
+            color="primary"
+            variant="link"
+            :label="$t('privacy_policy')"
+            class="px-0"
+            :to="`${language === 'de' ? '' : '/en'}/legal/datenschutz`"
+          />
+          <UButton
+            size="sm"
+            color="primary"
+            variant="link"
+            :label="$t('imprint')"
+            class="px-0"
+            :to="`${language === 'de' ? '' : '/en'}/legal/impressum`"
+          />
+        </div>
       </div>
     </UContainer>
   </footer>
