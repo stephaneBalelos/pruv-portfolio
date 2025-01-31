@@ -5,9 +5,24 @@
 
     .letter {
         color: transparent;
-        background: linear-gradient(to right, rgb(var(--color-gray-100) / 1), rgb(var(--color-gray-100) / 1) 50%, rgb(var(--color-gray-100)/ .5) 50%);
+        background: linear-gradient(to right, rgb(var(--color-gray-900) / 1), rgb(var(--color-gray-900) / 1) 50%, rgb(var(--color-gray-900)/ .5) 50%);
         background-clip: text;
         background-size: 200% 100%;
         background-position: 100% 0%;
+    }
+}
+
+.dark {
+    text-decoration: none;
+    line-height: 1;
+    display: inline-block;
+
+    .bg-animated-text {
+        .letter {
+            background: linear-gradient(to right, rgb(var(--color-gray-100) / 1), rgb(var(--color-gray-100) / 1) 50%, rgb(var(--color-gray-100)/ .5) 50%);
+            background-clip: text;
+            background-size: 200% 100%;
+            background-position: 100% 0%;
+        }
     }
 }

@@ -10,7 +10,7 @@
         </h2>
       </div>
       <div class="flex flex-2">
-        <img :src="props.image" alt="" >
+        <img :src="props.image" alt="Stephane Dondyas" >
       </div>
     </div>
   </UContainer>
