@@ -14,14 +14,14 @@
         ref="projectCard"
           class="w-full lg:w-3/4 bottom-8 lg:bottom-24 left-0 flex flex-col bg-white dark:bg-gray-800 p-8 shadow-lg"
         >
-          <div class="text-sm text-gray-900 dark:text-gray-200">{{ props.label }}</div>
+          <div class="text-sm text-primary-900 dark:text-primary-200">{{ props.label }}</div>
           <div class="text-xl lg:text-4xl font-bold text-gray-900 dark:text-gray-200">
             {{ props.title }}
           </div>
           <div class="text-sm text-gray-900 dark:text-gray-200 mt-4">
             <PruviousHTML :html="props.description" />
           </div>
-          <div v-if="props.links" class="mt-4">
+          <div v-if="props.links" class="mt-4 not-prose">
             <UButton
               v-for="l, index in props.links"
               :key="index"

@@ -7,6 +7,7 @@
       :title="project.title"
       :description="project.description"
       :image-url="project.image?.src"
+      :links="project.links"
     />
   </div>
 </template>
