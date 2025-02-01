@@ -21,10 +21,11 @@
           <div class="text-sm text-gray-900 dark:text-gray-200 mt-4">
             <PruviousHTML :html="props.description" />
           </div>
-          <div v-if="props.links" class="mt-4 not-prose">
+          <div v-if="props.links" class="mt-4 flex flex-wrap gap-2 not-prose">
             <UButton
               v-for="l, index in props.links"
               :key="index"
+              class="px-0 lg:px-4"
               color="primary"
               variant="ghost"
               :label="l.label"
