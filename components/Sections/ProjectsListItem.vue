@@ -1,8 +1,8 @@
 <template>
-  <div ref="section" class="relative flex items-center justify-center h-screen w-full">
+  <div ref="section" class="relative flex items-center justify-center min-h-screen w-full pt-24">
     <UContainer class="h-full">
-      <div class="relative w-full h-full">
-        <div class="absolute w-9/12 h-1/2 lg:h-full top-0 right-0">
+      <div class="relative">
+        <div class="lg:w-9/12 lg:ml-auto lg:h-full">
           <img
           ref="image"
             :src="props.imageUrl"
@@ -12,11 +12,11 @@
         </div>
         <div
         ref="projectCard"
-          class="absolute w-full lg:w-1/2 bottom-8 lg:bottom-24 left-0 flex flex-col bg-white dark:bg-gray-800 p-8 shadow-lg"
+          class="w-full lg:w-3/4 bottom-8 lg:bottom-24 left-0 flex flex-col bg-white dark:bg-gray-800 p-8 shadow-lg"
         >
           <div class="text-sm text-gray-900 dark:text-gray-200">{{ props.label }}</div>
-          <div class="text-4xl font-bold text-gray-900 dark:text-gray-200">
-            <TextSchuffle :interval="100">{{ props.title }}</TextSchuffle>
+          <div class="text-xl lg:text-4xl font-bold text-gray-900 dark:text-gray-200">
+            {{ props.title }}
           </div>
           <div class="text-sm text-gray-900 dark:text-gray-200 mt-4">
             <PruviousHTML :html="props.description" />
@@ -51,7 +51,6 @@
 
 <script setup lang="ts">
 import { PruviousHTML } from "#components";
-import TextSchuffle from "../ui/TextSchuffle.vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -86,7 +85,7 @@ onMounted(() => {
         });
     
         tl.to(projectCard.value, {
-            y: -500,
+            y: -200,
             duration: 1,
         });
 
