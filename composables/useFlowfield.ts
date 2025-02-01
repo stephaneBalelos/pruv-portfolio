@@ -22,10 +22,10 @@ export const useFlowfield = createGlobalState(() => {
 
     const state = reactive<State>({
         flowfield: [],
-        particlesCount: 50,
+        particlesCount: 40,
         cols: 0,
         rows: 0,
-        scale: 20,
+        scale: 30,
         xOff: .1,
         yOff: .1,
         zOff: 0.00003

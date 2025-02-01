@@ -5,8 +5,8 @@
       ref="particleRefs"
       :key="index"
       :points="positions.map((pos) => new Vector3(pos.x, pos.y, pos.z))"
-      :segments="98"
-      :line-width=".5"
+      :segments="44"
+      :line-width=".3"
       :world-units="true"
       color="#cade9c"
     />
@@ -31,7 +31,7 @@ const { counter, resume } = useInterval(100, {
   immediate: false,
 });
 
-const MaxSpeed = 4;
+const MaxSpeed = 3;
 
 const position = ref({
   x: getRanNum((-state.cols * state.scale) / 2, (state.cols * state.scale) / 2),

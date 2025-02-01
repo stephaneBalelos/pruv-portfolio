@@ -9,7 +9,7 @@
               {{ props.subtitle }}
             </TextSchuffle>
           </div>
-          <div class="text-4xl text-gray-900 dark:text-gray-100">
+          <div class="text-xl lg:text-4xl text-gray-900 dark:text-gray-100">
             <TextSchuffle :interval="30">
               {{ props.title }}
             </TextSchuffle>
