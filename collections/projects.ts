@@ -23,5 +23,24 @@ export default defineCollection({
                 required: true,
             },
         },
+        links: {
+            type: 'repeater',
+            options: {
+                subfields: {
+                    label: {
+                        type: 'text',
+                        options: {
+                            required: true,
+                        },
+                    },
+                    url: {
+                        type: 'text',
+                        options: {
+                            required: true,
+                        },
+                    },
+                }
+            }
+        }
     }
 })

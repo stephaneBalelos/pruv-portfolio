@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { SharedLenisScrollConatiner } from "#components";
 import { useLanguage } from "~/.pruvious/client";
 
 const language = useLanguage();
@@ -13,9 +12,7 @@ if (language.value) {
 
 <template>
   <div class="prose prose-slate dark:prose-invert max-w-none">
-    <SharedLenisScrollConatiner>
-      <NuxtPage />
-    </SharedLenisScrollConatiner>
+    <NuxtPage />
   </div>
   <ClientOnly>
     <ExternalPlausibleScript />

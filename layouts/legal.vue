@@ -1,19 +1,18 @@
 <template>
   <div>
-      <AppNavbar />
-      <main>
+    <AppNavbar />
+    <main>
+      <SharedLenisScrollConatiner>
         <slot />
-      </main>
-      <AppFooter />
+      </SharedLenisScrollConatiner>
+    </main>
+    <AppFooter />
   </div>
 </template>
 
 <script setup lang="ts">
-import AppNavbar from '~/components/AppNavbar.vue';
-import AppFooter from '~/components/AppFooter.vue';
-
+import AppNavbar from "~/components/AppNavbar.vue";
+import AppFooter from "~/components/AppFooter.vue";
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -25,6 +25,7 @@ const { data } = await useAsyncData(async () => {
     }
   });
 
+  console.log(response);
   return response;
 });
 </script>

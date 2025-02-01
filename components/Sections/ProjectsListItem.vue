@@ -21,27 +21,19 @@
           <div class="text-sm text-gray-900 dark:text-gray-200 mt-4">
             <PruviousHTML :html="props.description" />
           </div>
-          <div class="mt-4">
+          <div v-if="props.links" class="mt-4">
             <UButton
-              v-if="props.liveUrl"
+              v-for="l, index in props.links"
+              :key="index"
               color="primary"
               variant="ghost"
-              label="View Live"
+              :label="l.label"
               icon="i-heroicons-arrow-up-right-20-solid"
-              :to="props.liveUrl"
+              :to="l.url"
               target="_blank"
               trailing
             />
-            <UButton
-              v-if="props.githubUrl"
-              color="primary"
-              variant="ghost"
-              label="View on Github"
-              icon="i-heroicons-arrow-up-right-20-solid"
-              :to="props.githubUrl"
-              target="_blank"
-              trailing
-            />
+
           </div>
         </div>
       </div>
@@ -58,10 +50,11 @@ type Props = {
   label?: string;
   title: string;
   description: string;
-  liveUrl?: string;
-  githubUrl?: string;
   imageUrl?: string;
-  uploadId?: number;
+  links?: {
+    label: string;
+    url: string;
+  }[]
 };
 
 const props = defineProps<Props>();
