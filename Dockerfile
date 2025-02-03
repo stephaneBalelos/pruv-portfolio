@@ -6,7 +6,7 @@ FROM node:${NODE_VERSION}-slim AS build
 # Enable pnpm
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+RUN npm install -g pnpm@latest-10
 
 # Set the working directory inside the container
 WORKDIR /app
