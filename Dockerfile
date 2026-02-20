@@ -33,6 +33,9 @@ WORKDIR /app
 # Copy the output from the build stage to the working directory
 COPY --from=build /app/.output ./
 
+# Mount the uploads directory as a volume
+VOLUME /app/.uploads
+
 # Define environment variables
 ENV HOST=0.0.0.0
 ENV NODE_ENV=production
