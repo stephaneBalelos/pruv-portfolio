@@ -15,11 +15,11 @@ services:
       - NUXT_PLAUSIBLE_DOMAIN=${NUXT_PLAUSIBLE_DOMAIN}
       - NUXT_PLAUSIBLE_SCRIPT_URL=${NUXT_PLAUSIBLE_SCRIPT_URL}
     volumes:
-      - ./uploads:/app/.uploads
+      - ../files/uploads:/app/.uploads
   db:
     image: postgres:16-alpine
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - ../files/postgres-data:/var/lib/postgresql/data
     env_file:
       - .env
     environment:
